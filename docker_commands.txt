@@ -1,0 +1,162 @@
+Docker Commands:
+
+
+docker --help
+
+
+docker ps ==> To check the docker process or containers.
+
+              which are currently running.
+
+docker ps -a ==> lists the all the containers,both stopped and started or running.
+
+Docker images related commands:
+===============================
+
+docker images ==> To list the local images.
+
+
+docker search <image name > ==> To search the images in                                    the hub.docker.com
+
+
+docker pull <image> ==> To pull the image from the                          hub.docker.com
+
+docker inspect <image> ==> To verify the images contents.
+
+
+docker rmi < image name >  To remove the image locally.
+
+
+docker build -t < custom_name of the images>  . ==> To                                       build the image from the base image using the docker file.
+
+
+Container Related commands:
+===============================
+
+  docker run -itd --name <name of the container>  <image>
+
+     ====> To create the container from the image.
+
+ docker start <container> ==> To start the container.
+
+ docker ps -a ==> To verifyt the status.
+
+ docker attach <container> ==> To login to the container.
+
+
+To launch and map the port to the local host per the applications.
+
+ docker run -itd  -p <host port>:<container port> --name <name of the container> < image>
+
+ example:
+  
+ docker run -itd -p 9945:80 --name webserver <image>
+
+ The webserver will be accessible from the host with the 80 port
+
+   http://dockerhost:9945 ==> container or application.
+
+ docker stop <container> ==> To stop the container.
+
+ docker start <container>
+
+ docker rm  <container> ==> To remove the container.
+
+ 
+Docker file: 
+================
+
+Docker file is the source code file to build the docker image.
+
+Commands or key words used in the docker file.
+
+ ** All the commands or keywords or keyword should be upper case.
+
+
+FROM
+ADD
+COPY
+CMD
+RUN
+
+Fromat of the docker file:
+======================
+
+Dcoker file
+----------
+FROM <image>
+ADD  <files> 
+
+docker build -t myimage .
+
+
+
+Docker  Volumes:
+--------------
+
+ docker volumes ls ==> To list the volumes.
+
+ docker volume create <volume> ==> to Create a volume.
+
+ docker volumes ls ==> Check volume is created or not.
+
+
+ Create a container and attach the volume:
+
+ docker run -itd -v <volume name> --name <container> <image>
+
+  The above command mount the volume on the container.
+
+
+
+ 1. Volumes can be directly created on the containers.
+
+  docker run -itd -v /<vlomue>  --name <container> <image>
+
+
+  This command will create a container and attach the volume directly
+
+
+ 2. Volumes can be created on Docker host/docker engine
+
+     and those volumes can be mounted on the container.
+
+
+     a. Create volume locally or select any host volume.
+
+      docker volume create <volume>
+      docker volume ls
+ 
+     b. Mount the volume on the container.
+
+       docker run -itd -v <volume>:/<mount point>  --name container <image>     
+
+
+If the file system or volume permission denied you need to give the below option.
+
+--privileged=true
+
+docker run --privileged=true -i -v /data1/Downloads:/Downloads ubuntu bas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
