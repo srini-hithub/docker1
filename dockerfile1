@@ -1,0 +1,5 @@
+FROM crorvick/redhat 
+ADD anaconda-ks.cfg /tmp/                 
+ADD file_ans1 /tmp
+COPY anaconda-ks.cfg /var
+COPY my.tar /var
